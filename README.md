@@ -7,18 +7,22 @@ Start by installing composer. Composer's website recommends using their installe
 Download Composer-Setup.exe and run it. Follow the wizard's instructions.
 
 Now create a symfony directory inside of wamp64's directory. Afterwords, the symfony path looks like this:
-###wamp64/www/public/symfony/
+
+### wamp64/www/public/symfony/
 
 Open your desired terminal and navigate to this newly created path. Type following command in the terminal:
-###composer create-project symfony/website-skeleton LabS
+
+### composer create-project symfony/website-skeleton LabS
 
 No errors appeared for me. Installation succeeded.
 
 Change directory in terminal to LabS. Download the server with command:
-###composer require server --dev
+
+### composer require server --dev
 
 Wait for the download. No errors received. Start the server with command:
-###php bin/console server:run
+
+### php bin/console server:run
 
 Server will start without issues. 
 
