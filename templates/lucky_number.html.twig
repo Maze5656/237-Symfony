@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+    {% block title %}Hello symfony{% endblock %}
+
+{% block stylesheets %}
+    <style>
+    .even {
+        width: 100px;
+        height: 100px;
+        background-color: red;
+    }
+
+    .odd {
+        width: 100px;
+        height: 100px;
+        background-color: blue;
+    }
+    </style>
+{% endblock %}
+
+{% block body %}
+        <h1>HIIIIIIIIII</h1>
+    {{ parent() }}
+        <div>
+            {{ random_number }}
+
+            {% for letter in 'a'|upper..'z'|upper %}
+            * {{ letter }}
+            {% endfor %}
+
+            {% for n in 1..9 %}
+                * {{ n }}
+            {% endfor %}
+
+            <ul>
+            {% for user in users %}
+                <li>{{ user.username|upper}}</li>
+            {% endfor %}
+            </ul>
+
+            {% if random_number > 50 %}
+                <div>
+                    What a bank number~!
+                </div>
+            {% elseif random_number < 50 and random_number > 25 %}
+            <div>
+                Not too big / nut 2 small.
+            </div>
+            {% else %}
+                <div>
+                    What a small numbor. A filthy mess
+                </div>
+            {% endif  %}
+
+            {%  for i in 1..random_number %}
+                <div class="{{ cycle(['even', 'odd'], i) }}">
+                    {{ i }}
+                    <!-- some html would go here -->
+                </div>
+            {% endfor %}
+        </div>
+{% endblock %}

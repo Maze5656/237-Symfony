@@ -6,7 +6,13 @@
         {% block stylesheets %}{% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+    <div class="container">
+        {% block body %}
+            <div>
+            I am an html element form base.html.twig
+            </div>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
+    </div>
     </body>
 </html>
