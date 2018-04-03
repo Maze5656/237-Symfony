@@ -1,4 +1,7 @@
 
+#
+.src/Entity/Movie.php
+
 ###> symfony/framework-bundle ###
 .env
 /public/bundles/
