@@ -6,10 +6,12 @@ class Task {
 
     private $description;
     private $dueDate;
+    private $image;
 
-    function __construct(string $description, \DateTime $dueDate) {
+    function __construct(string $description, \DateTime $dueDate, $image) {
         $this->description = $description;
         $this->dueDate = $dueDate;
+        $this->image = $image;
     }
 
     /**
@@ -38,6 +40,22 @@ class Task {
      */
     public function setDueDate(\DateTime $dueDate): void {
         $this->dueDate = $dueDate;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getImage()
+    {
+        return $this->image;
+    }
+
+    /**
+     * @param mixed $image
+     */
+    public function setImage($image): void
+    {
+        $this->image = $image;
     }
 
 }
