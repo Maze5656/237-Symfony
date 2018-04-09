@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\ButtonType;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProduceItemType extends AbstractType {
 
@@ -18,17 +20,10 @@ class ProduceItemType extends AbstractType {
         $builder
             ->add('name', TextareaType::class)
             ->add('expirationDate', DateType::class)
-//            ->add('icon', ChoiceType::class, array(
-//                'choices' => array(
-//                    '1' => null,
-//                    '2' => true,
-//                    '3' => false,
-//                ),
-//            ))
 
             ->add('icon', ChoiceType::class, [
                 'choices' => [
-                    new Icon('carrot', '/../public/uploads/carrot.svg'),
+                    new Icon('carrot', '<html><body><img src="/../public/uploads/carrot.svg"/></body></html>'),
                     new Icon('cheese', '/../public/uploads/cheese.svg'),
                     new Icon('steak', '/../public/uploads/steak.svg'),
                 ],
@@ -42,13 +37,13 @@ class ProduceItemType extends AbstractType {
                         ];
                 },
 
-                'group_by' =>function($icon, $iconName, $iconImage) {
-                    return rand(0, 1) == 1 ? 'Group A' : 'Group B';
-                },
                 'preferred_choices' => function($icon, $iconName, $iconImage) {
                     return $icon->getIconName() == 'cheese' || $icon->getIconName() == 'steak';
                 },
             ])
+
+            ->add('uploadIcon', ButtonType::class, ['label' => 'Upload new Icon'])
+            //->add('image', EntityType::class, ['label' => 'Upload new Icon'])
 
             ->add('save', SubmitType::class, ['label' => 'Create new Produce Item']);
     }

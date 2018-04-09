@@ -17,7 +17,11 @@
 
         <div>
             {{ form_label(produce_item_form.icon) }}
-            {{ form_widget(produce_item_form.icon, {'attr': {'class' : 'form-control'} }) }}
+            {{ form_widget(produce_item_form.icon, {'attr': {'class' : 'dropdown-toggle'} }) }}
+        </div>
+
+        <div>
+            {{ form_widget(produce_item_form.uploadIcon, {'attr': {'class' : 'btn btn-success'} }) }}
         </div>
 
         <div>

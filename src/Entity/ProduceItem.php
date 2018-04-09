@@ -14,6 +14,7 @@ class ProduceItem {
     private $name;
     private $expiration_date;
     private $icon;
+    private $uploadIcon;
 
     function __construct($name, \DateTime $expiration_date, $icon) {
         $this->name = $name;
@@ -62,6 +63,23 @@ class ProduceItem {
     public function setIcon($icon): void {
         $this->icon = $icon;
     }
+//
+//    /**
+//     * @return mixed
+//     */
+//    public function getUploadIcon()
+//    {
+//        return $this->uploadIcon;
+//    }
+//
+//    /**
+//     * @param mixed $uploadIcon
+//     */
+//    public function setUploadIcon($uploadIcon): void
+//    {
+//        $this->uploadIcon = $uploadIcon;
+//    }
+
 
 
 

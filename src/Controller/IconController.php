@@ -16,7 +16,7 @@ class IconController extends BaseController {
      */
     public function new(Request $request)
     {
-        $icon = new Icon("name", "image");
+        $icon = new Icon("new icon", "");
 
         $form = $this->createForm(IconType::class, $icon);
 
