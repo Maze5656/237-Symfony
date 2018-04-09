@@ -23,17 +23,11 @@ class ProduceItemController extends BaseController {
         $form->handleRequest($request);
 
         if($form->isSubmitted()) {
-            $iconFile = $pItem->getIcon();
-//            $fileName = md5(uniqid()) . '.' . $iconFile->guessExtension();
-//
-//            $rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
-//            $iconFile->move($rootDirPath, $fileName);
-//
-//            $pItem->setIcon($fileName);
-
             return new Response(
-                '<html><body>New Produce Item was added: ' . $pItem->getName() . ' on ' . $pItem->getExpirationDate()->format('Y-m-d') .
-               '</body></html>'
+                '<html><body>New Produce Item was added: ' . $pItem->getName()
+                . ' on ' . $pItem->getExpirationDate()->format('Y-m-d')
+                . ' with Icon: ' . $pItem->getIcon()->getIconImage()
+                . '</body></html>'
             );
         }
 

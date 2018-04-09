@@ -12,7 +12,7 @@ use Symfony\Component\HttpFoundation\Response;
 class IconController extends BaseController {
 
     /**
-     * @Route("/new-icon")
+     * @Route("/new-icon", name="icon")
      */
     public function new(Request $request)
     {

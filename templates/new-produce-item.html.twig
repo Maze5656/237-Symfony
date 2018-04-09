@@ -1,9 +1,20 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}New Produce Item{% endblock %}
+
 {% block body %}
 
     <div>
         {{ form_start(produce_item_form) }}
+
+        <div>
+            {{ form_label(produce_item_form.icon) }}
+            {{ form_widget(produce_item_form.icon, {'attr': {'class' : 'dropdown-toggle'} }) }}
+
+            <a href="{{ path('icon') }}">
+                {{ form_widget(produce_item_form.uploadIcon, {'attr': {'class' : 'btn btn-success'} }) }}
+            </a>
+        </div>
 
         <div class="form-group">
             {{ form_label(produce_item_form.name) }}
@@ -13,15 +24,6 @@
         <div class="form-group">
             {{ form_label(produce_item_form.expirationDate) }}
             {{ form_widget(produce_item_form.expirationDate, {'attr': {'class' : 'form-control'} }) }}
-        </div>
-
-        <div>
-            {{ form_label(produce_item_form.icon) }}
-            {{ form_widget(produce_item_form.icon, {'attr': {'class' : 'dropdown-toggle'} }) }}
-        </div>
-
-        <div>
-            {{ form_widget(produce_item_form.uploadIcon, {'attr': {'class' : 'btn btn-success'} }) }}
         </div>
 
         <div>

@@ -12,7 +12,6 @@ use Symfony\Component\Form\Extension\Core\Type\DateType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\ButtonType;
-use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 
 class ProduceItemType extends AbstractType {
 
@@ -24,11 +23,12 @@ class ProduceItemType extends AbstractType {
             ->add('icon', ChoiceType::class, [
                 'choices' => [
                     new Icon('carrot', '<html><body><img src="/../public/uploads/carrot.svg"/></body></html>'),
-                    new Icon('cheese', '/../public/uploads/cheese.svg'),
-                    new Icon('steak', '/../public/uploads/steak.svg'),
+                    new Icon('cheese', '<html><body><img src="/../public/uploads/cheese.svg"/></body></html>'),
+                    new Icon('steak', '<html><body><img src="/../public/uploads/steak.svg"/></body></html>'),
                 ],
                 'choice_label' => function ($icon, $iconName, $iconImage) {
-                    return strtoupper($icon->getIconName());
+                    //return strtoupper($icon->getIconName());
+                    return $icon->getIconName();
                 },
                 'choice_attr' => function($icon, $iconName, $iconImage) {
                     return [
@@ -43,7 +43,6 @@ class ProduceItemType extends AbstractType {
             ])
 
             ->add('uploadIcon', ButtonType::class, ['label' => 'Upload new Icon'])
-            //->add('image', EntityType::class, ['label' => 'Upload new Icon'])
 
             ->add('save', SubmitType::class, ['label' => 'Create new Produce Item']);
     }
