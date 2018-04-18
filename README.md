@@ -33,3 +33,7 @@ The terminal will display an http link after you start the server.
 
 Put the link into your chosen browser to view the symfony default. 
 You will get a symfony exception page.
+
+![Create DB](https://raw.github.com/Maze5656/237-Symfony/tree/lab7/public/uploads/createDatabase.png)
+![Query Dump](https://raw.github.com/Maze5656/237-Symfony/tree/lab7/public/uploads/firstQueryDump.png)
+![Query Run](https://raw.github.com/Maze5656/237-Symfony/tree/lab7/public/uploads/firstQueryRun.png)
