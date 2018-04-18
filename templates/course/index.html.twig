@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Adding new course!{% endblock %}
+
+{% block body %}
+
+<div>
+
+    {{ form_start(form) }}
+
+    <div class="form-group">
+        {{ form_label(form.name) }}
+        {{ form_widget(form.name, {'attr': {'class' : 'form-control'} }) }}
+    </div>
+
+    <div class="form-group">
+        {{ form_label(form.students) }}
+        {{ form_widget(form.students, {'attr': {'class' : 'form-control'} }) }}
+    </div>
+
+    <div>
+        {{ form_widget(form.save, {'attr' : {'class' : 'btn btn-primary'} }) }}
+    </div>
+
+    {{ form_end(form) }}
+
+</div>
+
+{% endblock %}

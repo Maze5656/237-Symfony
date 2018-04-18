@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing all icons.{% endblock %}
+
+{% block body %}
+
+    <h1>All Icons</h1>
+
+    <div class="list-group">
+
+        {% for icon in icons %}
+
+            <a href="#" class="list-group-item">
+                <div class="d-flex w-100 justify-content-between">
+                    <h4 class="list-group-item-heading">
+                        {{ icon.iconName }}
+                    </h4>
+                </div>
+            </a>
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="list-group-item-heading">
+                    {{ icon.iconImage }}
+                </h4>
+            </div>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

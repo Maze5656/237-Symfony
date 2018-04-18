@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Listing all stgudents{% endblock %}
+
+{% block body %}
+
+    <h1>All Courses</h1>
+
+    <div class="list-group">
+
+        {% for course in courses %}
+
+        <a href="#" class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="list-group-item-heading">
+                    {{ course.name }}
+                </h4>
+                {% for student in course.students %}
+                <p class="list-group-item-text">
+                    {{ student.firstName }} {{ student.lastName }}
+                </p>
+                {% endfor %}
+            </div>
+        </a>
+
+        {% endfor %}
+
+    </div>
+
+{% endblock %}

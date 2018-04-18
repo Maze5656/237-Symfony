@@ -8,17 +8,50 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Icon;
 
+/**
+ * @ORM\Entity
+ */
 class ProduceItem {
 
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private $name;
+    /**
+     * @ORM\Column(type="datetime")
+     */
     private $expiration_date;
+
+    /**
+     * @ORM\OneToOne(targetEntity="Icon")
+     */
     private $icon;
 
-    function __construct($name, \DateTime $expiration_date, $icon) {
-        $this->name = $name;
-        $this->expiration_date = $expiration_date;
-        $this->icon = $icon;
+    public function __construct() {
+        $this->icon = new Icon();
+    }
+
+//    function __construct($name, \DateTime $expiration_date, $icon) {
+//        $this->name = $name;
+//        $this->expiration_date = $expiration_date;
+//        $this->icon = $icon;
+//    }
+
+    /**
+     * @return mixed
+     */
+    public function getId() {
+        return $this->id;
     }
 
     /**
@@ -39,7 +72,7 @@ class ProduceItem {
      * @return mixed
      */
     public function getExpirationDate() : \DateTime {
-        return $this->expiration_date;
+        return $this->expiration_date = new \DateTime("now");
     }
 
     /**

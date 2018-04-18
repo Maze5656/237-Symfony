@@ -2,19 +2,36 @@
 
 namespace App\Entity;
 
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * @ORM\Entity
+ */
 class Icon {
+
+    /**
+     * @ORM\Id()
+     * @ORM\GeneratedValue()
+     * @ORM\Column(type="integer")
+     */
+    private $id;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private $iconName;
+
+    /**
+     * @ORM\Column(type="string")
+     */
     private $iconImage;
 
     /**
-     * Icon constructor.
-     * @param $iconName
-     * @param $iconImage
+     * @return mixed
      */
-    public function __construct($iconName, $iconImage)
+    public function getId()
     {
-        $this->iconName = $iconName;
-        $this->iconImage = $iconImage;
+        return $this->id;
     }
 
     /**

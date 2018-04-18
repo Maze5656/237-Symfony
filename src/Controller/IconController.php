@@ -23,21 +23,41 @@ class IconController extends BaseController {
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
-            $iconFile = $icon->getIconImage();
-            $fileName = md5(uniqid()) . '.' . $iconFile->guessExtension();
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->persist($icon);
+            $entityManager->flush();
 
-            $rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
-            $iconFile->move($rootDirPath, $fileName);
-
-            $icon->setIconImage($fileName);
-
-            return new Response(
-                '<html><body>New Icon was added: ' . $icon->getIconName() . ' right now ' .
-                ' Hashed file name: ' . $icon->getIconImage() . '<img src="/uploads/' . $icon->getIconImage() . '"/></body></html>'
-            );
+            return new Response('New icon got added to the database.');
         }
 
         return $this->render('new-icon.html.twig', ['icon_form' => $form->createView()]);
-
     }
+
+    /**
+     * @Route("/icons", name="icon_list")
+     */
+    public function list() {
+        $repository = $this->getDoctrine()->getRepository(Icon::class);
+
+        $icons = $repository->findAll();
+
+        return $this->render('icon/list.html.twig', ['icons' => $icons]);
+    }
+
 }
+//            $iconFile = $icon->getIconImage();
+//            $fileName = md5(uniqid()) . '.' . $iconFile->guessExtension();
+//
+//            $rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
+//            $iconFile->move($rootDirPath, $fileName);
+//
+//            $icon->setIconImage($fileName);
+//
+//            return new Response(
+//                '<html><body>New Icon was added: ' . $icon->getIconName() . ' right now ' .
+//                ' Hashed file name: ' . $icon->getIconImage() . '<img src="/uploads/' . $icon->getIconImage() . '"/></body></html>'
+//            );
+//        }
+//
+//        return $this->render('new-icon.html.twig', ['icon_form' => $form->createView()]);
+
