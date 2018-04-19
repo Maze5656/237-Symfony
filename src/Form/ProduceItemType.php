@@ -23,36 +23,11 @@ class ProduceItemType extends AbstractType {
             ->add('expirationDate', DateType::class)
             ->add('icon', EntityType::class, [
                 'class' => Icon::class,
-                'choice_label' => 'iconName',
-                'multiple' => true
+                'choice_label' => 'iconName'
             ])
             ->add('uploadIcon', ButtonType::class, ['label' => 'Upload new Icon'])
             ->add('save', SubmitType::class, ['label' => 'Create new Produce Item']);
-
-//            ->add('icon', ChoiceType::class, [
-//                'choices' => [
-//                    new Icon('carrot', '<html><body><img src="/../public/uploads/carrot.svg"/></body></html>'),
-//                    new Icon('cheese', '<html><body><img src="/../public/uploads/cheese.svg"/></body></html>'),
-//                    new Icon('steak', '<html><body><img src="/../public/uploads/steak.svg"/></body></html>'),
-//                ],
-//                'choice_label' => function ($icon, $iconName, $iconImage) {
-//                    //return strtoupper($icon->getIconName());
-//                    return $icon->getIconName();
-//                },
-//                'choice_attr' => function($icon, $iconName, $iconImage) {
-//                    return [
-//                        'class' => 'icon_'.strtolower($icon->getIconName()),
-//                        'class' => 'icon_'.$icon->getIconImage()
-//                        ];
-//                },
-//
-//                'preferred_choices' => function($icon, $iconName, $iconImage) {
-//                    return $icon->getIconName() == 'cheese' || $icon->getIconName() == 'steak';
-//                },
-//            ])
-//
-
-}
+    }
 
     public function configureOptions(OptionsResolver $resolver)
     {

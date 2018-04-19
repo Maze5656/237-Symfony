@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\ProduceItem;
+use App\Entity\Icon;
+use App\Form\IconType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,23 +32,7 @@ class ProduceItemController extends BaseController {
             return new Response('New produce item was added to the database as item number ' . $pItem->getId());
         }
 
-        return $this->render('new-produce-item.html.twig', ['form' => $form-createView()]);
-//        $pItem = new ProduceItem("", new \DateTime(""), new ChoiceType());
-//
-//        $form = $this->createForm(ProduceItemType::class, $pItem);
-//
-//        $form->handleRequest($request);
-//
-//        if($form->isSubmitted()) {
-//            return new Response(
-//                '<html><body>New Produce Item was added: ' . $pItem->getName()
-//                . ' on ' . $pItem->getExpirationDate()->format('Y-m-d')
-//                . ' with Icon: ' . $pItem->getIcon()->getIconImage()
-//                . '</body></html>'
-//            );
-//        }
-//
-//        return $this->render('new-produce-item.html.twig', ['produce_item_form' => $form->createView()]);
+        return $this->render('new-produce-item.html.twig', ['produce_item_form' => $form->createView()]);
     }
 
     /**

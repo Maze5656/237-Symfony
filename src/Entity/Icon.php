@@ -27,43 +27,28 @@ class Icon {
     private $iconImage;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
         return $this->id;
     }
 
-    /**
-     * @return mixed
-     */
     public function getIconName()
     {
         return $this->iconName;
     }
 
-    /**
-     * @param mixed $iconName
-     */
-    public function setIconName($iconName): void
-    {
+    public function setIconName($iconName) {
         $this->iconName = $iconName;
     }
 
-    /**
-     * @return mixed
-     */
     public function getIconImage()
     {
         return $this->iconImage;
     }
 
-    /**
-     * @param mixed $iconImage
-     */
-    public function setIconImage($iconImage): void
-    {
+    public function setIconImage($iconImage): void {
         $this->iconImage = $iconImage;
     }
-
 }
