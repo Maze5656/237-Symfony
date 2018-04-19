@@ -36,13 +36,20 @@ class ProduceItemController extends BaseController {
     }
 
     /**
+     * list function to list all produceItems and all Icon Names
      * @Route("/items", name="produce_list")
      */
     public function list() {
         $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+        $iconRepository = $this->getDoctrine()->getRepository(Icon::class);
 
         $items = $repository->findAll();
+        $icons = $iconRepository->findAll();
 
-        return $this->render('produce_list.html.twig', ['items' => $items]);
+        return $this->render('produce_list.html.twig', [
+                                    'items' => $items,
+                                    'iconNames' => $icons
+                                ]
+        );
     }
 }

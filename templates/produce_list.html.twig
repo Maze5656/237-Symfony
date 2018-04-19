@@ -19,15 +19,19 @@
                     </h4>
                 </div>
             </a>
+        {% endfor %}
 
-            <div class="d-flex w-100 justify-content-between">
-                <h4 class="list-group-item-heading">
+        <h1>All Icon Names</h1>
 
-                </h4>
-            </div>
+        {% for icon in iconNames %}
+
+        <div class="d-flex w-100 justify-content-between">
+            <h4 class="list-group-item-heading">
+                {{ icon.iconName }}
+            </h4>
+        </div>
 
         {% endfor %}
 
     </div>
-
 {% endblock %}
