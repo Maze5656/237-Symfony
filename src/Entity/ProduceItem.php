@@ -37,16 +37,6 @@ class ProduceItem {
      */
     private $icon;
 
-    public function __construct() {
-        $this->icon = new Icon();
-    }
-
-//    function __construct($name, \DateTime $expiration_date, $icon) {
-//        $this->name = $name;
-//        $this->expiration_date = $expiration_date;
-//        $this->icon = $icon;
-//    }
-
     /**
      * @return mixed
      */
@@ -64,7 +54,7 @@ class ProduceItem {
     /**
      * @param mixed $name
      */
-    public function setName($name): void {
+    public function setName($name) {
         $this->name = $name;
     }
 
@@ -78,21 +68,15 @@ class ProduceItem {
     /**
      * @param mixed $expiration_date
      */
-    public function setExpirationDate($expiration_date): void {
+    public function setExpirationDate($expiration_date) {
         $this->expiration_date = $expiration_date;
     }
 
-    /**
-     * @return mixed
-     */
     public function getIcon() {
         return $this->icon;
     }
 
-    /**
-     * @param mixed $icon
-     */
-    public function setIcon($icon): void {
+    public function setIcon($icon) {
         $this->icon = $icon;
     }
 

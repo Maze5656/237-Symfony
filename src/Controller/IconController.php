@@ -16,13 +16,20 @@ class IconController extends BaseController {
      */
     public function new(Request $request)
     {
-        $icon = new Icon("new icon", "");
+        $icon = new Icon();
 
         $form = $this->createForm(IconType::class, $icon);
 
         $form->handleRequest($request);
 
         if ($form->isSubmitted()) {
+            
+            $file = $icon->getIconImage();
+            $fileName = md5(uniqid()) . '.' . $file->guessExtension();
+            $rootDirPath = $this->get('kernel')->getRootDir() . '/../public/uploads';
+            $file->move($rootDirPath, $fileName);
+            $icon->setIconImage($fileName);
+
             $entityManager = $this->getDoctrine()->getManager();
             $entityManager->persist($icon);
             $entityManager->flush();

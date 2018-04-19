@@ -23,8 +23,7 @@ class ProduceItemType extends AbstractType {
             ->add('expirationDate', DateType::class)
             ->add('icon', EntityType::class, [
                 'class' => Icon::class,
-                'choice_label' => 'iconName',
-                'multiple' => true
+                'choice_label' => 'iconName'
             ])
             ->add('uploadIcon', ButtonType::class, ['label' => 'Upload new Icon'])
             ->add('save', SubmitType::class, ['label' => 'Create new Produce Item']);

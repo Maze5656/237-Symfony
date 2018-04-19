@@ -27,7 +27,7 @@ class Icon {
     private $iconImage;
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getId()
     {
@@ -35,7 +35,7 @@ class Icon {
     }
 
     /**
-     * @return mixed
+     * @return string
      */
     public function getIconName()
     {
@@ -45,23 +45,17 @@ class Icon {
     /**
      * @param mixed $iconName
      */
-    public function setIconName($iconName): void
+    public function setIconName($iconName)
     {
         $this->iconName = $iconName;
     }
 
-    /**
-     * @return mixed
-     */
     public function getIconImage()
     {
         return $this->iconImage;
     }
 
-    /**
-     * @param mixed $iconImage
-     */
-    public function setIconImage($iconImage): void
+    public function setIconImage($iconImage)
     {
         $this->iconImage = $iconImage;
     }
