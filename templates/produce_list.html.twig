@@ -15,8 +15,7 @@
                     <h4 class="list-group-item-heading">
                         {{ item.Id }}.
                         {{ item.name }} -
-                        {{ item.expirationDate|date('d/m/Y') }}
-                        {{ item.expirationDate is empty ? "" : item.expirationDate|date('d/m/Y') }}
+                        {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
                     </h4>
                 </div>
             </a>

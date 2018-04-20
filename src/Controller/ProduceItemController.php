@@ -52,4 +52,15 @@ class ProduceItemController extends BaseController {
                                 ]
         );
     }
+
+//    /**
+//     * @Route("/items", name="produce_list")
+//     */
+//    public function getDate(str $expirationDate) {
+//        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+//
+//        $students = $repository->find($expirationDate);
+//
+//        return $this->render('student/student.html.twig', ['student' => $students]);
+//    }
 }

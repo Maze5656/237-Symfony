@@ -37,6 +37,14 @@ class ProduceItem {
      */
     public $icon;
 
+    public function __construct() {
+        $this->expiration_date
+            =
+            new
+            \DateTime();
+    }
+
+
     public function getId() {
         return $this->id;
     }
@@ -50,10 +58,10 @@ class ProduceItem {
     }
 
     public function getExpirationDate() : \DateTime {
-        return $this->expiration_date = new \DateTime();
+        return $this->expiration_date;
     }
 
-    public function setExpirationDate($expiration_date): void {
+    public function setExpirationDate($expiration_date) {
         $this->expiration_date = $expiration_date;
     }
 

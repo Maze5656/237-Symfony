@@ -1,3 +1,7 @@
+![Create DB](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/createDatabase.png)
+![Query Dump](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/firstQueryDump.png)
+![Query Run](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/firstQueryRun.png)
+
 ### Mockups
 https://app.moqups.com/thewraith476@hotmail.com/3RQZAxZkY9/edit/page/a8a2cbf23
 
@@ -34,6 +38,3 @@ The terminal will display an http link after you start the server.
 Put the link into your chosen browser to view the symfony default. 
 You will get a symfony exception page.
 
-![Create DB](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/createDatabase.png)
-![Query Dump](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/firstQueryDump.png)
-![Query Run](https://github.com/Maze5656/237-Symfony/blob/lab7/public/uploads/firstQueryRun.png)
