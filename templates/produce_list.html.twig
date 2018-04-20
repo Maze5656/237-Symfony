@@ -15,7 +15,8 @@
                     <h4 class="list-group-item-heading">
                         {{ item.Id }}.
                         {{ item.name }} -
-                        {{ item.expirationDate.format('d/m/Y') }}
+                        {{ item.expirationDate|date('d/m/Y') }}
+                        {{ item.expirationDate is empty ? "" : item.expirationDate|date('d/m/Y') }}
                     </h4>
                 </div>
             </a>
@@ -25,11 +26,13 @@
 
         {% for icon in iconNames %}
 
-        <div class="d-flex w-100 justify-content-between">
-            <h4 class="list-group-item-heading">
-                {{ icon.iconName }}
-            </h4>
-        </div>
+        <a href="#" class="list-group-item">
+            <div class="d-flex w-100 justify-content-between">
+                <h4 class="list-group-item-heading">
+                    {{ icon.iconName }}
+                </h4>
+            </div>
+        </a>
 
         {% endfor %}
 
