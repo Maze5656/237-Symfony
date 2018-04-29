@@ -6,7 +6,7 @@
 //use App\Entity\Student;
 //
 ///**
-// * @ORM\Entity(repositoryClass="App\Repository\CourseRepository")
+// * @ORM\Entity(repositoryClass="App\Repository\CourseRepository") // Repository
 // */
 //class Course
 //{

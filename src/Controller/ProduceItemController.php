@@ -30,6 +30,7 @@ class ProduceItemController extends BaseController {
             $entityManager->flush();
 
             return new Response('New produce item was added to the database as item number ' . $pItem->getId());
+//            return new Response($this->redirectToRoute('/new-produce-item'));
         }
 
         return $this->render('new-produce-item.html.twig', ['produce_item_form' => $form->createView()]);
@@ -52,6 +53,19 @@ class ProduceItemController extends BaseController {
                                 ]
         );
     }
+
+    /**
+     * @Route("/items/{refrigerator}", name="refrig_list")
+     */
+    public function listRefrigeratorItemsByDate(Request $request, $pItem) {
+        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+
+        $items = $repository->getRefrigeratorItems($pItem);
+
+        return $this->render('produce_list.html.twig', ['items' => $items]);
+    }
+
+// if in shopping list, set to true, else to falsse
 
 //    /**
 //     * @Route("/items", name="produce_list")

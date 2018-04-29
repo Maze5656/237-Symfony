@@ -37,13 +37,18 @@ class ProduceItem {
      */
     public $icon;
 
+// Add new property - bool to indicate if item is in shopping list or not
+    /**
+     * @ORM\Column(type="boolean")
+     */
+    public $isInShoppingList = true; // all newly created items are in shopping list first.
+
     public function __construct() {
         $this->expiration_date
             =
             new
             \DateTime();
     }
-
 
     public function getId() {
         return $this->id;
@@ -73,5 +78,14 @@ class ProduceItem {
         $this->icon = $icon;
     }
 
+// $isInShoppinglist
+// get getters and setters for it
+    public function getIsInShoppingList() {
+        return $this->isInShoppingList;
+    }
+
+    public function setIsInShoppingList($isInShoppingList) {
+        $this->isInShoppingList = $isInShoppingList;
+    }
 
 }

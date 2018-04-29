@@ -35,12 +35,12 @@ class CourseController extends Controller
     }
 
     /**
-     * @Route("/courses", name="courses")
+     * @Route("/courses/{course}", name="courses")
      */
-    public function list(Request $request) {
+    public function listByCourse(Request $request, $course) {
         $repository = $this->getDoctrine()->getRepository(Course::class);
 
-        $courses = $repository->findAll();
+        $courses = $repository->findAllStudentsByCourse($course);
 
         return $this->render('course/list.html.twig', ['courses' => $courses]);
     }

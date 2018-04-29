@@ -10,16 +10,18 @@
 
         {% for course in courses %}
 
-        <a href="#" class="list-group-item">
+        <a href="{{ path('course', {'course': course.name}) }}" class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
                 <h4 class="list-group-item-heading">
                     {{ course.name }}
                 </h4>
+                <ul>
                 {% for student in course.students %}
-                <p class="list-group-item-text">
-                    {{ student.firstName }} {{ student.lastName }}
-                </p>
+                    <li class="list-group-item-text">
+                        {{ student.firstName }} {{ student.lastName }}
+                    </li>
                 {% endfor %}
+                </ul>
             </div>
         </a>
 
