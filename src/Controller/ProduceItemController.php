@@ -5,6 +5,7 @@ namespace App\Controller;
 use App\Entity\ProduceItem;
 use App\Entity\Icon;
 use App\Form\IconType;
+use PHPUnit\Util\RegularExpression;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -15,7 +16,7 @@ use Symfony\Component\HttpFoundation\Response;
 class ProduceItemController extends BaseController {
 
     /**
-     * @Route("/new-produce-item")
+     * @Route("/new-produce-item", name="new_produce_item")
      */
     public function new(Request $request) {
         $pItem = new ProduceItem();
@@ -29,8 +30,11 @@ class ProduceItemController extends BaseController {
             $entityManager->persist($pItem);
             $entityManager->flush();
 
-            return new Response('New produce item was added to the database as item number ' . $pItem->getId());
-//            return new Response($this->redirectToRoute('/new-produce-item'));
+            //return new Response('New produce item was added to the database as item number ' . $pItem->getId());
+            return new Response('New produce item added to the database as item number ' . $pItem->getId() .
+                '<br><a href="items">View Shopping List</a>
+                 <br><a href="new-produce-item">Back to New Produce Item</a></body></html>');
+            //return $this->redirectToRoute('new_produce_item');
         }
 
         return $this->render('new-produce-item.html.twig', ['produce_item_form' => $form->createView()]);

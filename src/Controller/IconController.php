@@ -33,7 +33,11 @@ class IconController extends BaseController {
             $entityManager->persist($icon);
             $entityManager->flush();
 
-            return new Response('New icon got added to the database.');
+            //return new Response('New icon got added to the database.');
+            return new Response('<html><body>New icon added to the database.<br>
+                <a href="new-icon">Back to New Icon</a><br>
+                <a href="new-produce-item">Back to New Produce Item</a></body></html>');
+            // <html><body><a href="/somepath">Some button</a></body></html>
         }
 
         return $this->render('new-icon.html.twig', ['icon_form' => $form->createView()]);
