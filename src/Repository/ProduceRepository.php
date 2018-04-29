@@ -8,10 +8,8 @@ use Symfony\Bridge\Doctrine\RegistryInterface;
 
 
 class ProduceRepository extends ServiceEntityRepository {
-    public function __construct(RegistryInterface $registry)
-    {
+    public function __construct(RegistryInterface $registry) {
         parent::__construct($registry, ProduceItem::class);
-        //parent::__construct($registry, ProduceItem::class);
     }
 
     // These are items created through the new-produce-item path
@@ -21,8 +19,9 @@ class ProduceRepository extends ServiceEntityRepository {
             ->getResult();
     }
 
-    // These are items manually added after creation
-    public function getRefrigeratorItems($produceItem) {
+//findAllRefrigeratorItemsByBoolean
+    // These are items manually added to refrigerator after creation
+    public function getRefrigeratorItems() {
         return $this->getEntityManager()
             ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem WHERE produceItem.isInShoppingList = :bool ORDER BY produceItem.expirationDate ASC')
             ->setParameter('bool', false)
@@ -36,12 +35,4 @@ class ProduceRepository extends ServiceEntityRepository {
 //            ->getResult();
 //    }
 
-
-    public function findAllStudentsByCourse($course)
-    {
-        return $this->getEntityManager()
-            ->createQuery('SELECT course FROM App\Entity\Course course WHERE course.name = :name')
-            ->setParameter('name', $course)
-            ->getResult();
-    }
 }

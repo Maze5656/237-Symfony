@@ -4,8 +4,8 @@ namespace App\Controller;
 
 use App\Entity\ProduceItem;
 use App\Entity\Icon;
+use App\Repository\ProduceRepository;
 use App\Form\IconType;
-use PHPUnit\Util\RegularExpression;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
@@ -30,11 +30,9 @@ class ProduceItemController extends BaseController {
             $entityManager->persist($pItem);
             $entityManager->flush();
 
-            //return new Response('New produce item was added to the database as item number ' . $pItem->getId());
             return new Response('New produce item added to the database as item number ' . $pItem->getId() .
                 '<br><a href="items">View Shopping List</a>
                  <br><a href="new-produce-item">Back to New Produce Item</a></body></html>');
-            //return $this->redirectToRoute('new_produce_item');
         }
 
         return $this->render('new-produce-item.html.twig', ['produce_item_form' => $form->createView()]);
@@ -59,26 +57,15 @@ class ProduceItemController extends BaseController {
     }
 
     /**
-     * @Route("/items/{refrigerator}", name="refrig_list")
+     * @Route("/items/refrigerator", name="refrigerator")
      */
-    public function listRefrigeratorItemsByDate(Request $request, $pItem) {
+    public function listRefrigeratorItemsByDate() {
         $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
 
-        $items = $repository->getRefrigeratorItems($pItem);
+        $items = $repository->getRefrigeratorItems();
+        //findBy(array('isInShoppingList' => false));
 
         return $this->render('produce_list.html.twig', ['items' => $items]);
     }
 
-// if in shopping list, set to true, else to falsse
-
-//    /**
-//     * @Route("/items", name="produce_list")
-//     */
-//    public function getDate(str $expirationDate) {
-//        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
-//
-//        $students = $repository->find($expirationDate);
-//
-//        return $this->render('student/student.html.twig', ['student' => $students]);
-//    }
 }
