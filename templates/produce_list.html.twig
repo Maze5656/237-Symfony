@@ -3,8 +3,10 @@
 {% block title %}Listing all Produce Items.{% endblock %}
 
 {% block body %}
+    <a class="btn btn-primary" href="new-produce-item">Back to New Produce Item</a>
 
     <h1>All Produce Items</h1>
+
 
     <div class="list-group">
 
@@ -28,7 +30,7 @@
         <a href="#" class="list-group-item">
             <div class="d-flex w-100 justify-content-between">
                 <h4 class="list-group-item-heading">
-                    {{ icon.iconName }}
+                    {{ icon.iconName }} <img src="../uploads/{{ icon.iconImage }}"/>
                 </h4>
             </div>
         </a>

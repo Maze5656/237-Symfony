@@ -12,7 +12,7 @@
             {{ form_widget(produce_item_form.icon, {'attr': {'class' : 'dropdown-toggle'} }) }}
 
             <a href="{{ path('icon') }}">
-                {{ form_widget(produce_item_form.uploadIcon, {'attr': {'class' : 'btn btn-success'} }) }}
+                {{ form_widget(produce_item_form.uploadIcon, {'attr': {'class' : 'btn btn-warning'} }) }}
             </a>
         </div>
 
@@ -28,6 +28,7 @@
 
         <div>
             {{ form_widget(produce_item_form.save, {'attr': {'class' : 'btn btn-primary'} }) }}
+            <a class="btn btn-success" href="items">View Shopping List</a>
         </div>
 
         {{ form_end(produce_item_form) }}
