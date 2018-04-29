@@ -15,7 +15,7 @@ class ProduceRepository extends ServiceEntityRepository {
     // These are items created through the new-produce-item path
     public function getShoppingListItems() {
         return $this->getEntityManager()
-            ->createQuery('SELECT * FROM App\Entity\ProduceItem produceItem')
+            ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem')
             ->getResult();
     }
 
@@ -23,16 +23,9 @@ class ProduceRepository extends ServiceEntityRepository {
     // These are items manually added to refrigerator after creation
     public function getRefrigeratorItems() {
         return $this->getEntityManager()
-            ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem WHERE produceItem.isInShoppingList = :bool ORDER BY produceItem.expirationDate ASC')
+            ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem WHERE produceItem.isInShoppingList = :bool ORDER BY produceItem.expiration_date ASC')
             ->setParameter('bool', false)
             ->getResult();
     }
-
-//    public function list($produceItem) {
-//        return $this->getEntityManager()
-//            ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem WHERE produceItem.name = :name')
-//            ->setParameter('name', $produceItem)
-//            ->getResult();
-//    }
 
 }

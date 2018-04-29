@@ -1,12 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Listing all Produce Items.{% endblock %}
+{% block title %}My Refrigerator{% endblock %}
 
 {% block body %}
-    <a class="btn btn-primary" href="new-produce-item">Back to New Produce Item</a>
+    <a class="btn btn-success" href="shopping-list">View My Shopping List</a>
+    <a class="btn btn-primary" href="../new-produce-item">Create New Produce Item</a>
 
-    <h1>All Produce Items</h1>
-
+    <h1>My Refrigerator</h1>
 
     <div class="list-group">
 
@@ -18,11 +18,13 @@
                         {{ item.Id }}.
                         {{ item.name }} -
                         {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
+                        <img src="{{ item.icon.iconImage }}"/>
                     </h4>
                 </div>
             </a>
         {% endfor %}
 
+    {% if iconNames is defined %}
         <h1>All Icon Names</h1>
 
         {% for icon in iconNames %}
@@ -36,6 +38,7 @@
             </a>
 
         {% endfor %}
+    {% endif %}
 
     </div>
 {% endblock %}

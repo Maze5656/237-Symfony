@@ -12,7 +12,7 @@ use App\Entity\Icon;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="App\Repository\ProduceRepository")
  */
 class ProduceItem {
 
@@ -41,7 +41,7 @@ class ProduceItem {
     /**
      * @ORM\Column(type="boolean")
      */
-    public $isInShoppingList = true; // all newly created items are in shopping list first.
+    public $isInShoppingList = false; // no newly created items are in shopping list.
 
     public function __construct() {
         $this->expiration_date

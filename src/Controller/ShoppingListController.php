@@ -12,13 +12,16 @@ use App\Form\ProduceItemType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class ProduceItemController extends BaseController {
+class ShoppingListController extends BaseController {
 
     /**
-     * @Route("/new-produce-item", name="new_produce_item")
+     * @Route("/new-shopping-list-item", name="new_shopping_list_item")
      */
     public function new(Request $request) {
         $pItem = new ProduceItem();
+
+        // Set flag to inside shopping list
+        $pItem->setIsInShoppingList(true);
 
         $form = $this->createForm(ProduceItemType::class, $pItem);
 
@@ -29,7 +32,7 @@ class ProduceItemController extends BaseController {
             $entityManager->persist($pItem);
             $entityManager->flush();
 
-            return new Response('New produce item added to the database as item number ' . $pItem->getId() .
+            return new Response('Item added to Shopping List.' .
                 '<br><a href="items/refrigerator">View My Refrigerator</a>
                  <br><a href="items/shopping-list">View My Shopping List</a>
                  <br><a href="new-produce-item">Back to New Produce Item</a></body></html>');
@@ -39,39 +42,9 @@ class ProduceItemController extends BaseController {
     }
 
     /**
-     * list function to list all produceItems and all Icon Names
-     * @Route("/items", name="produce_list")
-     */
-    public function list() {
-        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
-        $iconRepository = $this->getDoctrine()->getRepository(Icon::class);
-
-        $items = $repository->findAll();
-        $icons = $iconRepository->findAll();
-
-        return $this->render('produce_list.html.twig', [
-                                    'items' => $items,
-                                    'iconNames' => $icons
-                                ]
-        );
-    }
-
-    /**
-     * @Route("/items/shopping-list", name="shopping_list")
-     */
-    public function listAllShoppingList() {
-        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
-
-        $items = $repository->getShoppingListItems();
-        //findBy(array('isInShoppingList' => false));
-
-        return $this->render('shopping_list.html.twig', ['items' => $items]);
-    }
-
-    /**
      * @Route("/items/refrigerator", name="refrigerator")
      */
-    public function listRefrigeratorItemsByDate() {
+    public function list() {
         $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
 
         $items = $repository->getRefrigeratorItems();
