@@ -20,6 +20,9 @@ class ProduceItemController extends BaseController {
     public function new(Request $request) {
         $pItem = new ProduceItem();
 
+        // Set flag to NOT inside shopping list
+        $pItem->setIsInShoppingList(false);
+
         $form = $this->createForm(ProduceItemType::class, $pItem);
 
         $form->handleRequest($request);

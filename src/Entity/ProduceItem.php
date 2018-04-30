@@ -41,7 +41,7 @@ class ProduceItem {
     /**
      * @ORM\Column(type="boolean")
      */
-    public $isInShoppingList = false; // no newly created items are in shopping list.
+    public $isInShoppingList;
 
     public function __construct() {
         $this->expiration_date

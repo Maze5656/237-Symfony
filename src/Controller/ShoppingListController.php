@@ -5,10 +5,10 @@ namespace App\Controller;
 use App\Entity\ProduceItem;
 use App\Entity\Icon;
 use App\Form\IconType;
+use App\Form\ShoppingListItemType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller as BaseController;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
-use App\Form\ProduceItemType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -23,7 +23,7 @@ class ShoppingListController extends BaseController {
         // Set flag to inside shopping list
         $pItem->setIsInShoppingList(true);
 
-        $form = $this->createForm(ProduceItemType::class, $pItem);
+        $form = $this->createForm(ShoppingListItemType::class, $pItem);
 
         $form->handleRequest($request);
 
@@ -38,19 +38,18 @@ class ShoppingListController extends BaseController {
                  <br><a href="new-produce-item">Back to New Produce Item</a></body></html>');
         }
 
-        return $this->render('new-produce-item.html.twig', ['produce_item_form' => $form->createView()]);
+        return $this->render('new-shopping-list-item.html.twig', ['shopping_item_form' => $form->createView()]);
     }
 
     /**
-     * @Route("/items/refrigerator", name="refrigerator")
+     * @Route("/items/shopping-list", name="shopping_list")
      */
-    public function list() {
+    public function listAllShoppingList() {
         $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
 
-        $items = $repository->getRefrigeratorItems();
-        //findBy(array('isInShoppingList' => false));
+        $items = $repository->getShoppingListItems();
 
-        return $this->render('produce_list.html.twig', ['items' => $items]);
+        return $this->render('shopping_list.html.twig', ['items' => $items]);
     }
 
 }

@@ -1,0 +1,31 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Shopping List Item{% endblock %}
+
+{% block body %}
+
+    <div>
+        {{ form_start(shopping_item_form) }}
+
+        <div>
+            {{ form_label(shopping_item_form.icon) }}
+            {{ form_widget(shopping_item_form.icon, {'attr': {'class' : 'dropdown-toggle'} }) }}
+
+            <a href="{{ path('icon') }}">
+                {{ form_widget(shopping_item_form.uploadIcon, {'attr': {'class' : 'btn btn-warning'} }) }}
+            </a>
+        </div>
+
+        <div class="form-group">
+            {{ form_label(shopping_item_form.name) }}
+            {{ form_widget(shopping_item_form.name, {'attr': {'class' : 'form-control'} }) }}
+        </div>
+
+        <div>
+            {{ form_widget(shopping_item_form.save, {'attr': {'class' : 'btn btn-primary'} }) }}
+            <a class="btn btn-success" href="items/shopping-list">View My Shopping List</a>
+        </div>
+
+        {{ form_end(shopping_item_form) }}
+    </div>
+{% endblock %}
