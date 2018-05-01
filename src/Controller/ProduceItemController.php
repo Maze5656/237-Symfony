@@ -60,18 +60,6 @@ class ProduceItemController extends BaseController {
     }
 
     /**
-     * @Route("/items/shopping-list", name="shopping_list")
-     */
-    public function listAllShoppingList() {
-        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
-
-        $items = $repository->getShoppingListItems();
-        //findBy(array('isInShoppingList' => false));
-
-        return $this->render('shopping_list.html.twig', ['items' => $items]);
-    }
-
-    /**
      * @Route("/items/refrigerator", name="refrigerator")
      */
     public function listRefrigeratorItemsByDate() {

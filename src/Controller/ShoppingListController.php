@@ -35,7 +35,7 @@ class ShoppingListController extends BaseController {
             return new Response('Item added to Shopping List.' .
                 '<br><a href="items/refrigerator">View My Refrigerator</a>
                  <br><a href="items/shopping-list">View My Shopping List</a>
-                 <br><a href="new-produce-item">Back to New Produce Item</a></body></html>');
+                 <br><a href="new-produce-item">Back to New Shopping List Item</a></body></html>');
         }
 
         return $this->render('new-shopping-list-item.html.twig', ['shopping_item_form' => $form->createView()]);

@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Welcome{% endblock %}
+
+{% block body %}
+    <div class="text-center">
+
+        <h1 class="text-center">Welcome!</h1>
+
+        <div style="padding: 25px">
+            <img class="mt-4 mb-4" src="/uploads/refrig.jpg" style="height: 200px"; width="200px">
+        </div>
+
+        <div class="text-center">
+            <a class="btn btn-success" href="items/shopping-list">View My Shopping List</a>
+            <a class="btn btn-success" href="items/refrigerator">View My Refrigerator</a>
+        </div>
+
+        <div style="padding: 25px">
+            <a class="btn btn-primary" href="new-shopping-list-item">Create New Shopping List Item</a>
+            <a class="btn btn-primary" href="new-produce-item">Create New Produce Item</a>
+        </div>
+
+    </div>
+
+{% endblock %}
