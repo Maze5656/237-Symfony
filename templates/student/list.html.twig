@@ -14,3 +14,12 @@
 </ul>
 
 {% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script>
+            $(document).ready(function() {
+                alert('Hi there');
+            });
+    </script>
+{% endblock %}

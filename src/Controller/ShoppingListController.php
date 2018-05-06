@@ -52,4 +52,28 @@ class ShoppingListController extends BaseController {
         return $this->render('shopping_list.html.twig', ['items' => $items]);
     }
 
+    /**
+     * @Route("items/shopping-list-download", name="shopping_list_download")
+     */
+    public function download() {
+        $repository = $this->getDoctrine()->getRepository(ProduceItem::class);
+
+        $items = $repository->getShoppingListItems();
+        $fileName = 'shopping_list.txt';
+
+        $fp = fopen($fileName, 'w');
+
+        $content = '';
+
+        foreach($items as $item) {
+            $iName = $item->getName();
+            $content .= "$iName \n";
+        }
+
+        fwrite($fp, $content);
+        fclose($fp);
+
+        return $this->file($fileName);
+    }
+
 }

@@ -15,7 +15,8 @@ class ProduceRepository extends ServiceEntityRepository {
     // These are items created through the new-produce-item path
     public function getShoppingListItems() {
         return $this->getEntityManager()
-            ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem')
+            ->createQuery('SELECT produceItem FROM App\Entity\ProduceItem produceItem WHERE produceItem.isInShoppingList = :bool')
+            ->setParameter('bool', true)
             ->getResult();
     }
 

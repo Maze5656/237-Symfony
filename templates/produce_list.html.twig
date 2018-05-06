@@ -12,19 +12,37 @@
 
     <div class="list-group">
 
-        {% for item in items %}
+        {% if rItem is defined %}
+            {{ rItem.Id }}.
+            {{ rItem.name }} -
+            {{ rItem.expirationDate is empty ? "No Date set!" : rItem.expirationDate|date('d/m/Y') }}
+        {% endif %}
 
-            <a href="#" class="list-group-item">
-                <div class="d-flex w-100 justify-content-between">
-                    <h4 class="list-group-item-heading">
-                        {{ item.Id }}.
-                        {{ item.name }} -
-                        {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
-                        <img src="{{ item.icon.iconImage }}"/>
-                    </h4>
-                </div>
-            </a>
-        {% endfor %}
+        {% if items is defined %}
+            <ul class="list-unstyled list-group">
+                {% for item in items %}
+
+                    <a href="refrigerator/{{ item.Id }}">
+                        <div class="d-flex w-400 justify-content-between list-group-item">
+                            <h4 class="list-group-item-heading">
+                                <li id="{{ item.Id }}-list-item">
+                                    {{ item.Id }}.
+                                    {{ item.name }} -
+                                    {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
+                                    <img src="{{ item.icon.iconImage }}"/>
+                                    <a href="{{ path('edit_refItem', { id: item.Id }) }}">
+                                        <i class="fas fa-pencil-alt text-primary"></i>
+                                    </a>
+                                    <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
+                                        <i class="fas fa-trash-alt text-danger"></i>
+                                    </span>
+                                </li>
+                            </h4>
+                        </div>
+                    </a>
+                {% endfor %}
+            </ul>
+        {% endif %}
 
     {% if iconNames is defined %}
         <h1>All Icon Names</h1>
@@ -43,4 +61,23 @@
     {% endif %}
 
     </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('ul li span').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'DELETE'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
+
+            })
+        });
+    </script>
 {% endblock %}

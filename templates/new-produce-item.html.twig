@@ -1,10 +1,14 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}New Produce Item{% endblock %}
+{% block title %}{{ label }}{% endblock %}
 
 {% block body %}
 
-    <div>
+    <div id="alert-div">
+
+    </div>
+
+    <div class="mt-5">
         {{ form_start(produce_item_form) }}
         <img class="mt-4 mb-4" src="/uploads/refrig.jpg" style="height: 200px"; width="200px">
 
@@ -28,10 +32,33 @@
         </div>
 
         <div>
-            {{ form_widget(produce_item_form.save, {'attr': {'class' : 'btn btn-primary'} }) }}
+            {{ form_widget(produce_item_form.save, {'attr': {'class' : 'btn btn-primary'}, 'label': label }) }}
             <a class="btn btn-success" href="items/refrigerator">View My Refrigerator</a>
         </div>
 
         {{ form_end(produce_item_form) }}
     </div>
+
+
+{% endblock %}
+
+{% block javascripts %}
+{{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('#ajax-update').click(function(e) {
+                let name = $('#produceItem_name').val();
+                let expirationDate = $('#produceItem_expirationDate').val();
+                let icon = $('#produceItem_icon').val();
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'PUT',
+                    data: { name: name, expirationDate: expirationDate, icon: icon }
+            }).done(function() {
+                    $('#alert-div').html('<div class="alert alert-success p-5">Success!</div>');
+                })
+            });
+        });
+    </script>
 {% endblock %}
