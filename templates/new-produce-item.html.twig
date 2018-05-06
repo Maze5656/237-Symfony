@@ -33,7 +33,7 @@
 
         <div>
             {{ form_widget(produce_item_form.save, {'attr': {'class' : 'btn btn-primary'}, 'label': label }) }}
-            <a class="btn btn-success" href="items/refrigerator">View My Refrigerator</a>
+            <a class="btn btn-success" href="{{ path('refrigerator') }}">View My Refrigerator</a>
         </div>
 
         {{ form_end(produce_item_form) }}

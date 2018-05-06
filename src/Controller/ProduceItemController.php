@@ -147,5 +147,19 @@ class ProduceItemController extends BaseController {
     }
 
     // Move an item to the shopping list
+    /**
+     * @Route("items/refrigerator/{id}", name="ref_to_list")
+     * @Method("PUT")
+     */
+    public function moveToShoppingList(int $id) {
+        $rItem = $this->getDoctrine()->getRepository(ProduceItem::class)->find($id);
+        $rItem->setIsInShoppingList(true);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($rItem);
+        $entityManager->flush();
+
+        return new JsonResponse([], Response::HTTP_OK);
+    }
 
 }

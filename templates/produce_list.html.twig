@@ -22,10 +22,10 @@
             <ul class="list-unstyled list-group">
                 {% for item in items %}
 
-                    <a href="refrigerator/{{ item.Id }}">
+                    <a href="#">
                         <div class="d-flex w-400 justify-content-between list-group-item">
                             <h4 class="list-group-item-heading">
-                                <li id="{{ item.Id }}-list-item">
+                                <li id="{{ item.Id }}-list-item" style="padding: 0px 30px;">
                                     {{ item.Id }}.
                                     {{ item.name }} -
                                     {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
@@ -36,6 +36,9 @@
                                     <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
                                         <i class="fas fa-trash-alt text-danger"></i>
                                     </span>
+                                    <button data-url={{ path("ref_to_list", { id: item.Id }) }} id="{{ item.Id }}" class="btn btn-success">
+                                        Add To Shopping List
+                                    </button>
                                 </li>
                             </h4>
                         </div>
@@ -76,7 +79,17 @@
                 }).done(function() {
                     $('#' + item_id + '-list-item').hide();
                 });
+            });
 
+            $('ul li button').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'PUT'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
             })
         });
     </script>

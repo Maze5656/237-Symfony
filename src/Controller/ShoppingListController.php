@@ -11,6 +11,8 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpFoundation\JsonResponse;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 
 class ShoppingListController extends BaseController {
 
@@ -74,6 +76,21 @@ class ShoppingListController extends BaseController {
         fclose($fp);
 
         return $this->file($fileName);
+    }
+
+    /**
+     * @Route("items/shopping-list/{id}", name="list-to-ref")
+     * @Method("PUT")
+     */
+    public function moveToRefrigerator(int $id) {
+        $rItem = $this->getDoctrine()->getRepository(ProduceItem::class)->find($id);
+        $rItem->setIsInShoppingList(false);
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->persist($rItem);
+        $entityManager->flush();
+
+        return new JsonResponse([], Response::HTTP_OK);
     }
 
 }

@@ -12,13 +12,13 @@
         </div>
 
         <div class="text-center">
-            <a class="btn btn-success" href="items/shopping-list">View My Shopping List</a>
-            <a class="btn btn-success" href="items/refrigerator">View My Refrigerator</a>
+            <a class="btn btn-success" href="{{ path('shopping_list') }}" >View My Shopping List</a>
+            <a class="btn btn-success" href="{{ path('refrigerator') }}">View My Refrigerator</a>
         </div>
 
         <div style="padding: 25px">
-            <a class="btn btn-primary" href="new-shopping-list-item">Create New Shopping List Item</a>
-            <a class="btn btn-primary" href="new-produce-item">Create New Produce Item</a>
+            <a class="btn btn-primary" href="{{ path('new_shopping_list_item') }}">Create New Shopping List Item</a>
+            <a class="btn btn-primary" href="{{ path('new_produce_item') }}">Create New Produce Item</a>
         </div>
 
     </div>

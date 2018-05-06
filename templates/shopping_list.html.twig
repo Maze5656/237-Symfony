@@ -15,15 +15,24 @@
 
         {% for item in items %}
 
-            <a href="#" class="list-group-item">
-                <div class="d-flex w-100 justify-content-between">
+        <ul class="list-unstyled list-group">
+
+                <div class="d-flex w-100 justify-content-between list-group-item">
                     <h4 class="list-group-item-heading">
-                        {{ item.Id }}.
-                        {{ item.name }} -
-                        <img src="{{ item.icon.iconImage }}"/>
+                        <li id="{{ item.Id }}-list-item">
+                            {{ item.Id }}.
+                            {{ item.name }} -
+                            <img src="{{ item.icon.iconImage }}"/>
+                            <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
+                                <i class="fas fa-trash-alt text-danger"></i>
+                            </span>
+                            <button data-url={{ path("list-to-ref", { id: item.Id }) }} id="{{ item.Id }}" class="btn btn-success">
+                                Bought
+                            </button>
+                        </li>
                     </h4>
                 </div>
-            </a>
+
         {% endfor %}
 
         {% if iconNames is defined %}
@@ -46,4 +55,33 @@
     <a href="{{ path("shopping_list_download") }}" class="btn btn-info">
         <i class="fas fa-download"></i> Download
     </a>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+    <script>
+        $(document).ready(function() {
+            $('ul li span').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'DELETE'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
+            })
+
+            $('ul li button').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'PUT'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
+            })
+        });
+    </script>
 {% endblock %}
