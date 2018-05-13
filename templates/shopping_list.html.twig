@@ -3,12 +3,13 @@
 {% block title %}My Shopping List{% endblock %}
 
 {% block body %}
+    <div id="dialog" title="Dialog Title">I'm in a dialog</div>
+
     <a class="btn btn-success" href="refrigerator">View My Refrigerator</a>
     <a class="btn btn-primary" href="../new-produce-item">Create New Produce Item</a>
     <a class="btn btn-primary" href="../new-shopping-list-item">Create New Shopping List Item</a>
 
     <h1>My Shopping List</h1>
-
     <img class="mt-4 mb-4" src="/uploads/basket.jpg" style="height: 200px"; width="200px">
 
     <div class="list-group">
@@ -17,24 +18,33 @@
 
         <ul class="list-unstyled list-group">
 
-                <div class="d-flex w-100 justify-content-between list-group-item">
+                <div class="d-flex w-400 justify-content-between list-group-item">
                     <h4 class="list-group-item-heading">
+                        <li id="{{ item.Id }}-list-item" style="padding: 0px 30px;">
 
-                        <li id="{{ item.Id }}-list-item">
-                            <img style="height: 30px; width: 30px" src="/uploads/{{ item.icon.getIconImage() }}"/>
-                             - {{ item.name }}
-                            <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
-                                <i class="fas fa-trash-alt text-danger"></i>
-                            </span>
-                            <button data-url={{ path("list-to-ref", { id: item.Id }) }} id="{{ item.Id }}" class="btn btn-success">
+                            <div class="col-md-2 ">
+                                <img style="height: 30px; width: 30px" src="/uploads/{{ item.icon.getIconImage() }}"/>
+                            </div>
+
+                            <div class="col-md-3 ">
+                                {{ item.name }}
+                            </div>
+
+                            <div class="col-md-2 ">
+                                <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
+                                    <i class="fas fa-trash-alt text-danger"></i>
+                                </span>
+                            </div>
+
+                            <button class="btn btn-success" data-toggle="modal" data-target="#hiddenModal" id="modalButton">
                                 Bought
                             </button>
                         </li>
-
                     </h4>
                 </div>
 
         {% endfor %}
+        </ul>
 
         {% if iconNames is defined %}
             <h1>All Icon Names</h1>
@@ -52,16 +62,26 @@
             {% endfor %}
         {% endif %}
 
-    </div>
     <a href="{{ path("shopping_list_download") }}" class="btn btn-info">
         <i class="fas fa-download"></i> Download
     </a>
+
+    </div>
 {% endblock %}
 
 {% block javascripts %}
     {{ parent() }}
     <script>
         $(document).ready(function() {
+            // Hide the date picker immediately
+            //$("#hiddenModal").hide();
+            $(function () {
+                $('#dialog').dialog({
+                    modal: true,
+                    autoOpen: false
+                });
+            });
+
             $('ul li span').click(function(e) {
                 let item_id = $(this).attr('Id');
 
@@ -73,16 +93,22 @@
                 });
             })
 
-            $('ul li button').click(function(e) {
-                let item_id = $(this).attr('Id');
+            // Show the expiration date window
+            // $('ul li button').click(function(e) {
+            //     $("#hiddenModal").show();
+            // })
 
-                $.ajax({
-                    url: $(this).data('url'),
-                    method: 'PUT'
-                }).done(function() {
-                    $('#' + item_id + '-list-item').hide();
-                });
-            })
+            // Move to refrigerator button
+            // $('ul li button').click(function(e) {
+            //     let item_id = $(this).attr('Id');
+            //
+            //     $.ajax({
+            //         url: $(this).data('url'),
+            //         method: 'PUT'
+            //     }).done(function() {
+            //         $('#' + item_id + '-list-item').hide();
+            //     });
+            // })
         });
     </script>
 {% endblock %}
