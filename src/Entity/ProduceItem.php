@@ -78,8 +78,6 @@ class ProduceItem {
         $this->icon = $icon;
     }
 
-// $isInShoppinglist
-// get getters and setters for it
     public function getIsInShoppingList() {
         return $this->isInShoppingList;
     }

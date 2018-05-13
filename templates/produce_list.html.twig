@@ -24,17 +24,33 @@
 
                         <div class="d-flex w-400 justify-content-between list-group-item">
                             <h4 class="list-group-item-heading">
-                                <li id="{{ item.Id }}-list-item" style="padding: 0px 30px;">
+                                <li id="{{ item.Id }}-list-item" style="padding: 0px 30px;" class=
+                                    "{% if item.expirationDate < date('+3 days')  %}alert-danger
+                                    {% elseif item.expirationDate < date('+5 days') %}alert-warning
+                                    {% endif %}">
 
-                                    <img style="height: 30px; width: 30px" src="/uploads/{{ item.icon.getIconImage() }}"/>
-                                     - {{ item.name }} :
-                                    {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
-                                    <a href="{{ path('edit_refItem', { id: item.Id }) }}">
-                                        <i class="fas fa-pencil-alt text-primary"></i>
-                                    </a>
-                                    <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
-                                        <i class="fas fa-trash-alt text-danger"></i>
-                                    </span>
+                                    <div class="col-md-2 ">
+                                        <img style="height: 30px; width: 30px" src="/uploads/{{ item.icon.getIconImage() }}"/>
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        {{ item.name }}
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        {{ item.expirationDate is empty ? "No Date set!" : item.expirationDate|date('d/m/Y') }}
+                                    </div>
+
+                                    <div class="col-md-2">
+                                        <a href="{{ path('edit_refItem', { id: item.Id }) }}">
+                                            <i class="fas fa-pencil-alt text-primary"></i>
+                                        </a>
+
+                                        <span data-url={{ path('delete_refItem', { id: item.Id }) }} id="{{ item.Id }}">
+                                            <i class="fas fa-trash-alt text-danger"></i>
+                                        </span>
+                                    </div>
+
                                     <button data-url={{ path("ref_to_list", { id: item.Id }) }} id="{{ item.Id }}" class="btn btn-success">
                                         Add To Shopping List
                                     </button>
