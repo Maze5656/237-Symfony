@@ -3,8 +3,6 @@
 {% block title %}My Shopping List{% endblock %}
 
 {% block body %}
-    <div id="dialog" title="Dialog Title">I'm in a dialog</div>
-
     <a class="btn btn-success" href="refrigerator">View My Refrigerator</a>
     <a class="btn btn-primary" href="../new-produce-item">Create New Produce Item</a>
     <a class="btn btn-primary" href="../new-shopping-list-item">Create New Shopping List Item</a>
@@ -36,9 +34,11 @@
                                 </span>
                             </div>
 
-                            <button class="btn btn-success" data-toggle="modal" data-target="#hiddenModal" id="modalButton">
+                            <button data-url={{ path("list-to-ref", { id: item.Id }) }} id="{{ item.Id }}" class="btn btn-success">
                                 Bought
                             </button>
+
+                            <input type="text" id="datepicker">
                         </li>
                     </h4>
                 </div>
@@ -73,15 +73,12 @@
     {{ parent() }}
     <script>
         $(document).ready(function() {
-            // Hide the date picker immediately
-            //$("#hiddenModal").hide();
+            // datepicker
             $(function () {
-                $('#dialog').dialog({
-                    modal: true,
-                    autoOpen: false
-                });
+                $( "#datepicker" ).datepicker({ minDate: 0, maxDate: "+27D" });
             });
 
+            // delete
             $('ul li span').click(function(e) {
                 let item_id = $(this).attr('Id');
 
@@ -99,16 +96,16 @@
             // })
 
             // Move to refrigerator button
-            // $('ul li button').click(function(e) {
-            //     let item_id = $(this).attr('Id');
-            //
-            //     $.ajax({
-            //         url: $(this).data('url'),
-            //         method: 'PUT'
-            //     }).done(function() {
-            //         $('#' + item_id + '-list-item').hide();
-            //     });
-            // })
+            $('ul li button').click(function(e) {
+                let item_id = $(this).attr('Id');
+
+                $.ajax({
+                    url: $(this).data('url'),
+                    method: 'PUT'
+                }).done(function() {
+                    $('#' + item_id + '-list-item').hide();
+                });
+            })
         });
     </script>
 {% endblock %}
